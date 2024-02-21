@@ -40,7 +40,7 @@ const PostsList = ({ posts }: { posts: Post[] }) => (
   <div>
     {posts.map((post) => (
       <div>
-        <div>Title3: {post.title}</div>
+        <div>Title: {post.title}</div>
         <div>Body: {post.body}</div>
         <hr />
       </div>
