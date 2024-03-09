@@ -1,17 +1,17 @@
 import build from '@hono/vite-cloudflare-pages'
 import devServer from '@hono/vite-dev-server'
 import { defineConfig } from 'vite'
-import { getPlatformProxy } from 'wrangler'
+import { getEnv } from '@hono/vite-dev-server/cloudflare-pages'
 
-export default defineConfig(async () => {
-  const proxy = await getPlatformProxy()
-  return {
-    plugins: [
-      build(),
-      devServer({
-        entry: 'src/index.tsx',
-        env: proxy.env,
+export default defineConfig({
+  plugins: [
+    build(),
+    devServer({
+      entry: 'src/index.tsx',
+      env: getEnv({
+        d1Databases: ['DB'],
+        d1Persist: '.wrangler/state/v3/d1',
       }),
-    ],
-  }
+    }),
+  ],
 })
